@@ -16,7 +16,7 @@
   on:click
   {date}
   {month}
-  class={cn(
+  class="{cn(
     buttonVariants({ variant: 'ghost' }),
     'h-9 w-9 p-0 font-normal',
     '[&[data-today]:not([data-selected])]:bg-accent [&[data-today]:not([data-selected])]:text-accent-foreground',
@@ -29,8 +29,9 @@
     // Outside months
     'data-[outside-month]:pointer-events-none data-[outside-month]:text-muted-foreground data-[outside-month]:opacity-50 [&[data-outside-month][data-selected]]:bg-accent/50 [&[data-outside-month][data-selected]]:text-muted-foreground [&[data-outside-month][data-selected]]:opacity-30',
     className
-  )}}
-  {...$restProps}}
+  )}}"
+  {...$restProps}
+  }
   let:selected
   let:disabled
   let:unavailable

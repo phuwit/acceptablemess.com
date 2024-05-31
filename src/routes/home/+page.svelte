@@ -4,7 +4,7 @@
 </svelte:head> -->
 
 <script lang="ts">
-  import ScrabbleTile from '../../components/scrabble/scrabble-tile.svelte';
+  import ScrabbleTile from '$lib/components/scrabble/scrabble-tile.svelte';
 </script>
 
 <div class="my-8 flex space-x-4">

@@ -5,6 +5,7 @@
 
   export let character: string;
   export let randomRotation: boolean = false;
+  export let hoverEffect: boolean = false;
 
   let className: string = '';
   export { className as class };
@@ -17,10 +18,11 @@
 
 <div
   class={cn(
-    'relative h-20 w-20 items-center justify-center rounded-md bg-yellow-100 dark:bg-yellow-100 text-4xl text-black drop-shadow-md transition-transform hover:scale-125',
+    'relative h-20 w-20 items-center justify-center rounded-md bg-yellow-100 dark:bg-yellow-200 text-4xl text-black drop-shadow-md transition-transform',
     className,
     randomRotation && getRandomRotation(),
-    randomRotation && `hover:${getRandomRotation()}`
+    randomRotation && `hover:${getRandomRotation()}`,
+    hoverEffect && 'hover:scale-125'
   )}
 >
   <div class="absolute flex h-full w-full items-center justify-center text-3xl">

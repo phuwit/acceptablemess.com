@@ -19,6 +19,7 @@
   import * as Sheet from '$lib/components/ui/sheet/index.js';
   import * as Table from '$lib/components/ui/table/index.js';
     import ModeToggle from '$lib/components/nav/mode-toggle.svelte';
+    import ScrabbleTile from '$lib/components/scrabble/scrabble-tile.svelte';
 
   let className: string = '';
   export { className as class };
@@ -30,21 +31,16 @@
   <nav
     class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
   >
-    <a href="##" class="flex items-center gap-2 text-lg font-semibold md:text-base">
-      <Package2 class="h-6 w-6" />
+    <a href="/" class="flex items-center md:text-base">
+			<ScrabbleTile class='scale-50' character='a' />
       <span class="sr-only">Acme Inc</span>
     </a>
+		<a href="/" class="text-foreground transition-colors hover:text-foreground">
+			Home
+		</a>
     <a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
-      Dashboard
+      Not Home
     </a>
-    <a href="##" class="text-muted-foreground transition-colors hover:text-foreground"> Orders </a>
-    <a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
-      Products
-    </a>
-    <a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
-      Customers
-    </a>
-    <a href="##" class="text-foreground transition-colors hover:text-foreground"> Settings </a>
   </nav>
   <Sheet.Root>
     <Sheet.Trigger asChild let:builder>
@@ -71,21 +67,4 @@
   <div class="flex flex-grow" />
 
 	<ModeToggle />
-
-  <DropdownMenu.Root>
-    <DropdownMenu.Trigger asChild let:builder>
-      <Button builders={[builder]} variant="secondary" size="icon" class="rounded-full">
-        <CircleUser class="h-5 w-5" />
-        <span class="sr-only">Toggle user menu</span>
-      </Button>
-    </DropdownMenu.Trigger>
-    <DropdownMenu.Content align="end">
-      <DropdownMenu.Label>My Account</DropdownMenu.Label>
-      <DropdownMenu.Separator />
-      <DropdownMenu.Item>Settings</DropdownMenu.Item>
-      <DropdownMenu.Item>Support</DropdownMenu.Item>
-      <DropdownMenu.Separator />
-      <DropdownMenu.Item>Logout</DropdownMenu.Item>
-    </DropdownMenu.Content>
-  </DropdownMenu.Root>
 </header>

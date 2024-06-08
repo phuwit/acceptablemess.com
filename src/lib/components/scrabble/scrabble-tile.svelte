@@ -18,7 +18,7 @@
 
 <div
   class={cn(
-    'relative h-20 w-20 items-center justify-center rounded-md bg-yellow-100 dark:bg-yellow-200 text-4xl text-black drop-shadow-md transition-transform',
+    'relative h-20 w-20 items-center justify-center rounded-md bg-yellow-100 dark:bg-yellow-200 text-4xl text-black shadow-md dark:shadow-slate-700 transition-transform',
     className,
     randomRotation && getRandomRotation(),
     randomRotation && `hover:${getRandomRotation()}`,

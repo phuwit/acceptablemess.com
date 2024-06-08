@@ -1,59 +1,34 @@
-<script>
-  import Counter from './Counter.svelte';
-  import welcome from '$lib/images/svelte-welcome.webp';
-  import welcome_fallback from '$lib/images/svelte-welcome.png';
+<!-- <svelte:head>
+	<title>About</title>
+	<meta name="description" content="About this app" />
+</svelte:head> -->
+
+<script lang="ts">
+  import ScrabbleTile from '$lib/components/scrabble/scrabble-tile.svelte';
 </script>
 
-<svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
-</svelte:head>
+<div class="flex h-full w-full flex-col items-center justify-center space-y-8">
+  <div class="flex space-x-4">
+    {#each 'acceptable'.split('') as character}
+      <ScrabbleTile {character} randomRotation />
+    {/each}
+  </div>
+  <div class="flex space-x-4">
+    {#each 'mess'.split('') as character}
+      <ScrabbleTile {character} randomRotation />
+    {/each}
+  </div>
+  <div class="flex space-x-4">
+    {#each 'dotcom'.split('') as character}
+      <ScrabbleTile {character} randomRotation />
+    {/each}
+  </div>
 
-<section>
-  <h1>
-    <span class="welcome">
-      <picture>
-        <source srcset={welcome} type="image/webp" />
-        <img src={welcome_fallback} alt="Welcome" />
-      </picture>
-    </span>
-
-    to your new<br />SvelteKit app
-  </h1>
-
-  <h2>
-    try editing <strong>src/routes/+page.svelte</strong>
-  </h2>
-
-  <Counter />
-</section>
+  <div>fail. spectacularly.</div>
+</div>
 
 <style>
-  section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 0.6;
-  }
-
-  h1 {
-    width: 100%;
-  }
-
-  .welcome {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding: 0 0 calc(100% * 495 / 2048) 0;
-  }
-
-  .welcome img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    display: block;
+  :root {
+    background-color: white;
   }
 </style>

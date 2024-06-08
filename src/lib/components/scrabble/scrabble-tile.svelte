@@ -6,6 +6,9 @@
   export let character: string;
   export let randomRotation: boolean = false;
 
+  let className: string = '';
+  export { className as class };
+
   function getRandomRotation(): ClassValue {
     const rotations = ['rotate-2', 'rotate-3', 'rotate-0', '-rotate-2', '-rotate-3'];
     return rotations[Math.floor(Math.random() * rotations.length)];
@@ -14,7 +17,8 @@
 
 <div
   class={cn(
-    'relative h-20 w-20 items-center justify-center rounded-md bg-yellow-100 text-4xl text-black drop-shadow-md transition-transform hover:scale-125',
+    'relative h-20 w-20 items-center justify-center rounded-md bg-yellow-100 dark:bg-yellow-100 text-4xl text-black drop-shadow-md transition-transform hover:scale-125',
+    className,
     randomRotation && getRandomRotation(),
     randomRotation && `hover:${getRandomRotation()}`
   )}

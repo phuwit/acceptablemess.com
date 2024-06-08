@@ -2,14 +2,17 @@
   import 'inter-ui/inter-variable.css';
   import '../app.css';
   import Nav from '$lib/components/nav/nav.svelte';
+  import { ModeWatcher } from 'mode-watcher';
 </script>
 
-<div class="h-screen w-full">
+<div class="h-dvh w-full">
+  <ModeWatcher />
+
   <header>
-    <Nav />
+    <Nav class="h-14" />
   </header>
 
-  <main class="mx-auto max-w-screen-lg">
+  <main class="mx-auto h-[calc(100%-3.5rem)] max-w-screen-lg">
     <slot />
   </main>
 

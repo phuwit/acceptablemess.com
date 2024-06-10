@@ -18,8 +18,8 @@
   import { Input } from '$lib/components/ui/input/index.js';
   import * as Sheet from '$lib/components/ui/sheet/index.js';
   import * as Table from '$lib/components/ui/table/index.js';
-    import ModeToggle from '$lib/components/nav/mode-toggle.svelte';
-    import ScrabbleTile from '$lib/components/scrabble/scrabble-tile.svelte';
+  import ModeToggle from '$lib/components/nav/mode-toggle.svelte';
+  import ScrabbleTile from '$lib/components/scrabble/scrabble-tile.svelte';
 
   let className: string = '';
   export { className as class };
@@ -32,12 +32,10 @@
     class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
   >
     <a href="/" class="flex items-center md:text-base">
-			<ScrabbleTile class='scale-50' character='a' />
+      <ScrabbleTile class="scale-50" character="a" />
       <span class="sr-only">Acme Inc</span>
     </a>
-		<a href="/" class="text-foreground transition-colors hover:text-foreground">
-			Home
-		</a>
+    <a href="/" class="text-foreground transition-colors hover:text-foreground"> Home </a>
     <a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
       Not Home
     </a>
@@ -66,5 +64,5 @@
 
   <div class="flex flex-grow" />
 
-	<ModeToggle />
+  <ModeToggle />
 </header>

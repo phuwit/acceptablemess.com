@@ -1,7 +1,7 @@
 <script lang="ts">
   import 'vidstack/bundle';
-  import SettingsForm from './settings-form.svelte';
-  export let data: any;
+  // import SettingsForm from './settings-form.svelte';
+  // export let data: any;
   import { browser } from '$app/environment';
   import Button from '$lib/components/ui/button/button.svelte';
 
@@ -74,7 +74,7 @@
   {#if isYoutube(randomUrl)}
     <div>
       <Button on:click={() => randomizeUrl()}>randomize</Button>
-      <Button on:click={() => window.location.href = randomUrl} variant="link">open on youtube.com</Button>
+      <Button variant="link" href={randomUrl}>open on youtube.com</Button>
     </div>
 
     <media-player src={randomUrl} playsInline>

@@ -24,12 +24,12 @@ const config = {
 				persist: false
 			}
 		}),
-    prerender: {
-      handleMissingId: (id, path) => {
-        console.warn(`Missing element with id "${id}" on page "${path}"`);
-        return 'ignore'; // or 'remove' or 'fail'
-      }
-    }
+    // prerender: {
+    //   handleMissingId: (id, path) => {
+    //     console.warn(`Missing element with id "${id}" on page "${path}"`);
+    //     return 'ignore'; // or 'remove' or 'fail'
+    //   }
+    // }
   }
 };
 

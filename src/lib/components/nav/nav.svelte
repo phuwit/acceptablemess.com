@@ -36,7 +36,7 @@
       <span class="sr-only">Acme Inc</span>
     </a>
     <a href="/" class="text-foreground transition-colors hover:text-foreground"> Home </a>
-    <a href="##" class="text-muted-foreground transition-colors hover:text-foreground">
+    <a href="/#" class="text-muted-foreground transition-colors hover:text-foreground">
       Not Home
     </a>
   </nav>
@@ -49,15 +49,15 @@
     </Sheet.Trigger>
     <Sheet.Content side="left">
       <nav class="grid gap-6 text-lg font-medium">
-        <a href="##" class="flex items-center gap-2 text-lg font-semibold">
+        <a href="/#" class="flex items-center gap-2 text-lg font-semibold">
           <Package2 class="h-6 w-6" />
           <span class="sr-only">Acme Inc</span>
         </a>
-        <a href="##" class="text-muted-foreground hover:text-foreground"> Dashboard </a>
-        <a href="##" class="text-muted-foreground hover:text-foreground"> Orders </a>
-        <a href="##" class="text-muted-foreground hover:text-foreground"> Products </a>
-        <a href="##" class="text-muted-foreground hover:text-foreground"> Customers </a>
-        <a href="##" class="hover:text-foreground"> Settings </a>
+        <a href="/#" class="text-muted-foreground hover:text-foreground"> Dashboard </a>
+        <a href="/#" class="text-muted-foreground hover:text-foreground"> Orders </a>
+        <a href="/#" class="text-muted-foreground hover:text-foreground"> Products </a>
+        <a href="/#" class="text-muted-foreground hover:text-foreground"> Customers </a>
+        <a href="/#" class="hover:text-foreground"> Settings </a>
       </nav>
     </Sheet.Content>
   </Sheet.Root>

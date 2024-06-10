@@ -1,25 +1,31 @@
 <script lang="ts">
-  import 'vidstack/bundle';
   // import SettingsForm from './settings-form.svelte';
   // export let data: any;
+  import 'vidstack/bundle';
   import { browser } from '$app/environment';
   import Button from '$lib/components/ui/button/button.svelte';
+  import { onMount } from 'svelte';
+    import type { MediaPlayerElement } from 'vidstack/elements';
 
   const URLS_LIST_URL = 'https://cdn.jsdelivr.net/gh/phuwit/web-resources@main/urls.json';
   let settingsHover: boolean = false;
   let randomUrl: string = '';
   let title: string = '';
 
-  randomizeUrl();
+  onMount(() => {
+    randomizeUrl();
+  });
   $: settingsHover, redirectToRandomUrl();
 
-  $: if (!browser || settingsHover) {
+  $: if (!browser) {
+    title = 'loading...';
+  }
+
+  $: if (settingsHover) {
       title = 'pausing while hoving on settings';
     } else {
       title = `taking you to ${randomUrl}...`;
     }
-
-  $: console.log(`randomUrl ${randomUrl}`)
 
   async function getUrlsList(): Promise<string[]> {
     const responsePromise = fetch(URLS_LIST_URL);
@@ -60,7 +66,10 @@
 </script>
 
 <div class="flex h-full w-full flex-col items-center justify-center space-y-6">
-  <h1 class="text-2xl font-semibold">{title}</h1>
+  <div class="text-center">
+    <h2 class="text-lg">curated brainrot.</h2>
+    <h1 class="text-2xl font-semibold">{title}</h1>
+  </div>
 
   <!-- <div
     role="region"
@@ -77,7 +86,7 @@
       <Button variant="link" href={randomUrl}>open on youtube.com</Button>
     </div>
 
-    <media-player src={randomUrl} playsInline>
+    <media-player src={randomUrl} playsInline on:ended={() => randomizeUrl()}>
       <media-provider></media-provider>
       <media-audio-layout></media-audio-layout>
       <media-video-layout></media-video-layout>

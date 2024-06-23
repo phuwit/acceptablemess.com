@@ -18,7 +18,7 @@
   $: attrs = {
     class: cn('transition-colors hover:text-foreground', className),
     href,
-    ...$$restProps
+    ...$$restProps,
   };
 </script>
 

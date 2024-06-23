@@ -5,9 +5,10 @@
   import { browser } from '$app/environment';
   import Button from '$lib/components/ui/button/button.svelte';
   import { onMount } from 'svelte';
-    import type { MediaPlayerElement } from 'vidstack/elements';
+  import type { MediaPlayerElement } from 'vidstack/elements';
 
-  const URLS_LIST_URL = 'https://cdn.jsdelivr.net/gh/phuwit/web-resources@main/urls.json';
+  const URLS_LIST_URL =
+    'https://cdn.jsdelivr.net/gh/phuwit/web-resources@main/urls.json';
   let settingsHover: boolean = false;
   let randomUrl: string = '';
   let title: string = '';
@@ -22,10 +23,10 @@
   }
 
   $: if (settingsHover) {
-      title = 'pausing while hoving on settings';
-    } else {
-      title = `taking you to ${randomUrl}...`;
-    }
+    title = 'pausing while hoving on settings';
+  } else {
+    title = `taking you to ${randomUrl}...`;
+  }
 
   async function getUrlsList(): Promise<string[]> {
     const responsePromise = fetch(URLS_LIST_URL);

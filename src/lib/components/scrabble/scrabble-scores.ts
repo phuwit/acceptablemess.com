@@ -25,7 +25,7 @@ export const scrabbleScores: { [key: string]: number } = {
   W: 4,
   X: 8,
   Y: 4,
-  Z: 10
+  Z: 10,
 };
 
 export function getScrabbleScore(letter: string) {

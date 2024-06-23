@@ -11,7 +11,13 @@
   export { className as class };
 
   function getRandomRotation(): ClassValue {
-    const rotations = ['rotate-2', 'rotate-3', 'rotate-0', '-rotate-2', '-rotate-3'];
+    const rotations = [
+      'rotate-2',
+      'rotate-3',
+      'rotate-0',
+      '-rotate-2',
+      '-rotate-3',
+    ];
     return rotations[Math.floor(Math.random() * rotations.length)];
   }
 </script>
@@ -22,13 +28,15 @@
     className,
     randomRotation && getRandomRotation(),
     randomRotation && `hover:${getRandomRotation()}`,
-    hoverEffect && 'hover:scale-125'
+    hoverEffect && 'hover:scale-125',
   )}
 >
   <div class="absolute flex h-full w-full items-center justify-center text-3xl">
     {character}
   </div>
-  <div class="absolute flex h-full w-full items-end justify-end px-2 py-1 text-xs">
+  <div
+    class="absolute flex h-full w-full items-end justify-end px-2 py-1 text-xs"
+  >
     {getScrabbleScore(character)}
   </div>
 </div>

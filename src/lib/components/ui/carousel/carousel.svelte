@@ -1,7 +1,11 @@
 <script lang="ts">
   import { writable } from 'svelte/store';
   import { onDestroy } from 'svelte';
-  import { type CarouselAPI, type CarouselProps, setEmblaContext } from './context.js';
+  import {
+    type CarouselAPI,
+    type CarouselProps,
+    setEmblaContext,
+  } from './context.js';
   import { cn } from '$lib/utils.js';
 
   type $$Props = CarouselProps;
@@ -72,7 +76,7 @@
     onInit,
     scrollSnaps: scrollSnapsStore,
     selectedIndex: selectedIndexStore,
-    scrollTo
+    scrollTo,
   });
 
   function onInit(event: CustomEvent<CarouselAPI>) {

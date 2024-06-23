@@ -9,7 +9,9 @@
   let className: string | undefined | null = undefined;
   export { className as class };
 
-  const { orientation, options, plugins, onInit } = getEmblaContext('<Carousel.Content/>');
+  const { orientation, options, plugins, onInit } = getEmblaContext(
+    '<Carousel.Content/>',
+  );
 </script>
 
 <div
@@ -19,14 +21,18 @@
       container: '[data-embla-container]',
       slides: '[data-embla-slide]',
       ...$options,
-      axis: $orientation === 'horizontal' ? 'x' : 'y'
+      axis: $orientation === 'horizontal' ? 'x' : 'y',
     },
-    plugins: $plugins
+    plugins: $plugins,
   }}
   on:emblaInit={onInit}
 >
   <div
-    class={cn('flex', $orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col', className)}
+    class={cn(
+      'flex',
+      $orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
+      className,
+    )}
     data-embla-container=""
     {...$$restProps}
   >

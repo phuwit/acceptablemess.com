@@ -8,7 +8,7 @@
   export let transition: $$Props['transition'] = flyAndScale;
   export let transitionConfig: $$Props['transitionConfig'] = {
     x: -10,
-    y: 0
+    y: 0,
   };
   export { className as class };
 </script>
@@ -18,7 +18,7 @@
   {transitionConfig}
   class={cn(
     'z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md focus:outline-none',
-    className
+    className,
   )}
   {...$$restProps}
   on:keydown

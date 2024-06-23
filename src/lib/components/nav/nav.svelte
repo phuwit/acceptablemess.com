@@ -26,7 +26,10 @@
 </script>
 
 <header
-  class={cn('sticky top-0 flex items-center gap-4 border-b bg-background px-4 md:px-6', className)}
+  class={cn(
+    'sticky top-0 flex items-center gap-4 border-b bg-background px-4 md:px-6',
+    className,
+  )}
 >
   <nav
     class="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6"
@@ -35,14 +38,24 @@
       <ScrabbleTile class="scale-50" character="a" />
       <span class="sr-only">Acme Inc</span>
     </a>
-    <a href="/" class="text-foreground transition-colors hover:text-foreground"> Home </a>
-    <a href="/#" class="text-muted-foreground transition-colors hover:text-foreground">
+    <a href="/" class="text-foreground transition-colors hover:text-foreground">
+      Home
+    </a>
+    <a
+      href="/#"
+      class="text-muted-foreground transition-colors hover:text-foreground"
+    >
       Not Home
     </a>
   </nav>
   <Sheet.Root>
     <Sheet.Trigger asChild let:builder>
-      <Button variant="outline" size="icon" class="shrink-0 md:hidden" builders={[builder]}>
+      <Button
+        variant="outline"
+        size="icon"
+        class="shrink-0 md:hidden"
+        builders={[builder]}
+      >
         <Menu class="h-5 w-5" />
         <span class="sr-only">Toggle navigation menu</span>
       </Button>
@@ -53,10 +66,18 @@
           <Package2 class="h-6 w-6" />
           <span class="sr-only">Acme Inc</span>
         </a>
-        <a href="/#" class="text-muted-foreground hover:text-foreground"> Dashboard </a>
-        <a href="/#" class="text-muted-foreground hover:text-foreground"> Orders </a>
-        <a href="/#" class="text-muted-foreground hover:text-foreground"> Products </a>
-        <a href="/#" class="text-muted-foreground hover:text-foreground"> Customers </a>
+        <a href="/#" class="text-muted-foreground hover:text-foreground">
+          Dashboard
+        </a>
+        <a href="/#" class="text-muted-foreground hover:text-foreground">
+          Orders
+        </a>
+        <a href="/#" class="text-muted-foreground hover:text-foreground">
+          Products
+        </a>
+        <a href="/#" class="text-muted-foreground hover:text-foreground">
+          Customers
+        </a>
         <a href="/#" class="hover:text-foreground"> Settings </a>
       </nav>
     </Sheet.Content>

@@ -1,7 +1,10 @@
 <script lang="ts">
   import { Pagination as PaginationPrimitive } from 'bits-ui';
   import { cn } from '$lib/utils.js';
-  import { type Props, buttonVariants } from '$lib/components/ui/button/index.js';
+  import {
+    type Props,
+    buttonVariants,
+  } from '$lib/components/ui/button/index.js';
 
   type $$Props = PaginationPrimitive.PageProps &
     Props & {
@@ -23,9 +26,9 @@
   class={cn(
     buttonVariants({
       variant: isActive ? 'outline' : 'ghost',
-      size
+      size,
     }),
-    className
+    className,
   )}
   {...$$restProps}
   on:click

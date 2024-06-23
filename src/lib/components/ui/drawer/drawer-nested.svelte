@@ -7,6 +7,11 @@
   export let activeSnapPoint: $$Props['activeSnapPoint'] = undefined;
 </script>
 
-<DrawerPrimitive.NestedRoot {shouldScaleBackground} bind:open bind:activeSnapPoint {...$$restProps}>
+<DrawerPrimitive.NestedRoot
+  {shouldScaleBackground}
+  bind:open
+  bind:activeSnapPoint
+  {...$$restProps}
+>
   <slot />
 </DrawerPrimitive.NestedRoot>

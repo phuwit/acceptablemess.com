@@ -7,10 +7,10 @@
   import { onMount } from 'svelte';
   import { get, writable, type Writable } from 'svelte/store';
   import psl from 'psl';
-  import { Hotel } from 'lucide-svelte';
 
   let settingsHover: boolean = false;
-  let randomUrl: string = 'https://youtu.be/S6wOPFrAWpw';
+  let randomUrl: string = '';
+  let mediaUrl: string = '';
   let title: string = '';
   let showVideoPlayer: boolean = false;
 
@@ -41,6 +41,15 @@
     title = `taking you to ${randomUrl} ->`;
   }
 
+  $: if (isYoutube(randomUrl) || isCobaltCompatible(randomUrl)) {
+    showVideoPlayer = true;
+    getCobaltStream(randomUrl);
+  } else {
+    showVideoPlayer = false;
+  }
+
+  $: console.log(mediaUrl)
+
   function loadSources(urls: string[]) {
     return Promise.all(
       urls.map(async (url) => {
@@ -56,7 +65,6 @@
     title = 'randomizing...';
     const list = get(urlsList);
     const url = list[Math.floor(Math.random() * list.length)];
-    showVideoPlayer = !!isCobaltCompatible(url);
     return url;
   }
 
@@ -74,17 +82,17 @@
     // window.location.href = randomUrl;
   }
 
+  function isYoutube(url: string): boolean {
+    const regexYoutube = /youtu(?:be\.com|\.be)/gim;
+    // const regexYoutubeId = /youtu(?:be\.com\/watch\?v=|\.be\/)(?<id>\w{11})/gmi;
+    return regexYoutube.test(url);
+  }
+
   async function loadCobaltCompatibleServices() {
     const responsePromise = fetch(cobaltServicesConfig);
     const response = await responsePromise;
     cobaltCompatibleServices.set(await response.json());
     return responsePromise;
-  }
-
-  function isYoutube(url: string): boolean {
-    const regexYoutube = /youtu(?:be\.com|\.be)/gim;
-    // const regexYoutubeId = /youtu(?:be\.com\/watch\?v=|\.be\/)(?<id>\w{11})/gmi;
-    return regexYoutube.test(url);
   }
 
   function isCobaltCompatible(url: string) {
@@ -111,35 +119,43 @@
     }
   }
 
-  cobaltCompatibleServices.subscribe((services) => {
+  async function getCobaltStream(url: string) {
+    const response = await fetch(
+      'https://sea-downloadapi.stuff.solutions/api/json',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          url: url,
+          vCodec: 'h264',
+          vQuality: 'max',
+          aFormat: 'best',
+          filenamePattern: 'basic',
+          isTTFullAudio: 'true',
+          tiktokH265: 'true',
+        }),
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    const responseData = await response.json()
     try {
-      const host = psl.parse(new URL(randomUrl).hostname);
-      if (host.error) return;
-
-      const service = services.config[host.sld || ''];
-      if (!service) return;
-      if ((service.tld ?? 'com') !== host.tld) return;
-
-      const anySubdomainAllowed = service.subdomains === '*';
-      const validSubdomain = [
-        null,
-        'www',
-        ...(service.subdomains ?? []),
-      ].includes(host.subdomain);
-      if (!validSubdomain && !anySubdomainAllowed) return;
-
-      return host.sld;
+      mediaUrl = responseData.url;
+      return mediaUrl;
     } catch (error) {
       console.error(error);
-      return null;
+      return;
     }
-  });
+  }
 </script>
 
 <div class="flex h-full w-full flex-col items-center justify-center space-y-6">
   <div class="text-center">
-    <h2 class="text-lg">curated brainrot.</h2>
-    <h1 class="text-2xl font-semibold">{title}</h1>
+    <h3 class="text-lg">curated brainrot. random nonsense in my feed.</h3>
+    <h1 class="text-3xl font-bold mb-4">lobotomy</h1>
+    <h2 class="text-2xl font-semibold">{title}</h2>
   </div>
 
   <!-- <div
@@ -151,7 +167,7 @@
     <SettingsForm data={data.form} />
   </div> -->
 
-  {#if isYoutube(randomUrl) || isCobaltCompatible(randomUrl)}
+  {#if showVideoPlayer}
     <div>
       <Button on:click={() => randomizeUrl()}>randomize</Button>
       <Button variant="link" href={randomUrl}>open on youtube.com</Button>
@@ -160,7 +176,10 @@
     <div class="flex w-full justify-center">
       <media-player
         class="w-5/6"
-        src={randomUrl}
+        src={{
+          src: mediaUrl,
+          type: 'video/webm'
+          }}
         playsInline
         storage="vidstack-preferences"
         load="eager"

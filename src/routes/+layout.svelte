@@ -13,7 +13,7 @@
   </header>
 
   <main class="mx-auto h-[calc(100%-3.5rem)] max-w-screen-lg">
-    <div class="mx-4 h-full w-full">
+    <div class="mx-4 h-full w-full lg:mx-0">
       <slot />
     </div>
   </main>

@@ -8,6 +8,8 @@
   import { get, writable, type Writable } from 'svelte/store';
   import psl from 'psl';
   import { constants } from '$lib/constants';
+  import { toast } from 'svelte-sonner';
+  import { error } from '@sveltejs/kit';
 
   let settingsHover: boolean = false;
   let randomUrl: string = '';
@@ -48,8 +50,6 @@
   } else {
     showVideoPlayer = false;
   }
-
-  $: console.log(mediaUrl)
 
   function loadSources(urls: string[]) {
     return Promise.all(
@@ -121,32 +121,37 @@
   }
 
   async function getCobaltStream(url: string) {
-    const response = await fetch(
-      constants.cobalt.json,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          url: url,
-          vCodec: 'h264',
-          vQuality: 'max',
-          aFormat: 'best',
-          filenamePattern: 'basic',
-          isTTFullAudio: 'true',
-          tiktokH265: 'true',
-        }),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      },
-    );
-
-    const responseData = await response.json()
     try {
+      const response = await fetch(
+        constants.cobalt.json,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            url: url,
+            vCodec: 'h264',
+            vQuality: 'max',
+            aFormat: 'best',
+            filenamePattern: 'basic',
+            isTTFullAudio: 'true',
+            tiktokH265: 'true',
+          }),
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+
+
+      const responseData = await response.json()
+      if (!response.ok) throw new Error(responseData.text)
+
       mediaUrl = responseData.url;
       return mediaUrl;
     } catch (error) {
-      console.error(error);
+      const errorMessage = error instanceof Error ? error.toString() : 'An unknown error occurred';
+      toast.error(errorMessage);
+      console.error(errorMessage);
       return;
     }
   }

@@ -3,10 +3,12 @@
   import '../app.css';
   import Nav from '$lib/components/nav/nav.svelte';
   import { ModeWatcher } from 'mode-watcher';
+  import { Toaster } from '$lib/components/ui/sonner';
 </script>
 
 <div class="h-dvh w-full">
   <ModeWatcher />
+  <Toaster />
 
   <header>
     <Nav class="h-14" />

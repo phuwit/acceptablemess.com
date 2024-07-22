@@ -7,6 +7,7 @@
   import { onMount } from 'svelte';
   import { get, writable, type Writable } from 'svelte/store';
   import psl from 'psl';
+  import { constants } from '$lib/constants';
 
   let settingsHover: boolean = false;
   let randomUrl: string = '';
@@ -121,7 +122,7 @@
 
   async function getCobaltStream(url: string) {
     const response = await fetch(
-      'https://sea-downloadapi.stuff.solutions/api/json',
+      constants.cobalt.json,
       {
         method: 'POST',
         body: JSON.stringify({
